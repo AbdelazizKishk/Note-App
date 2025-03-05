@@ -1,0 +1,223 @@
+<section>
+  <div class="container h-100 my-4">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 15px">
+          <div class="card-body p-md-3">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-2">
+                  Sign up
+                </p>
+                @if (errorMsg) {
+                <div
+                  class="alert alert-danger text-center text-capitalize w-75 mx-auto"
+                  role="alert"
+                >
+                  {{ errorMsg }}
+                </div>
+                } @if (scucessMsg) {
+                <div
+                  class="alert alert-success text-center text-capitalize w-75 mx-auto"
+                  role="alert"
+                >
+                  🎉 Success! Your account has been created. Let’s get started!
+                </div>
+                }
+
+                <form
+                  [formGroup]="registerForm"
+                  (ngSubmit)="registerUser()"
+                  class="mx-1 mx-md-4"
+                >
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline flex-fill mb-0"
+                    >
+                      @let nameControl = registerForm.get('name');
+                      <label class="form-label" for="Name">Your Name</label>
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            nameControl?.errors && nameControl?.touched,
+                          'is-valid': !nameControl?.errors
+                        }"
+                        type="text"
+                        formControlName="name"
+                        id="Name"
+                        class="form-control"
+                      />
+                      @if (nameControl?.errors && nameControl?.touched) {
+                      <div class="alert alert-danger" role="alert">
+                        @if (nameControl?.getError('required')) { Name is
+                        required }@else if (nameControl?.getError('minlength'))
+                        { Name Should be more than or equal 3 chars }@else if
+                        (nameControl?.getError('maxlength')) { Name Should be
+                        less than or equal 20 chars }
+                      </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline flex-fill mb-0"
+                    >
+                      @let emailControl = registerForm.get('email');
+                      <label class="form-label" for="email">Your Email</label>
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            emailControl?.errors && emailControl?.touched,
+                          'is-valid': !emailControl?.errors
+                        }"
+                        type="email"
+                        formControlName="email"
+                        id="email"
+                        class="form-control"
+                      />
+                      @if (emailControl?.errors && emailControl?.touched) {
+                      <div class="alert alert-danger" role="alert">
+                        @if (emailControl?.getError('required')) { Email is
+                        required }@else if (emailControl?.getError('email')) {
+                        Enter Valid Email }
+                      </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline flex-fill mb-0"
+                    >
+                      @let passwordControl = registerForm.get('password');
+                      <label class="form-label" for="Password">Password</label>
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            passwordControl?.errors && passwordControl?.touched,
+                          'is-valid': !passwordControl?.errors
+                        }"
+                        type="password"
+                        formControlName="password"
+                        id="Password"
+                        class="form-control"
+                      />
+                      @if (passwordControl?.errors && passwordControl?.touched)
+                      {
+                      <div class="alert alert-danger" role="alert">
+                        @if (passwordControl?.getError('required')) { password
+                        is required }@else if
+                        (passwordControl?.getError('pattern')) { password must
+                        start with upperCase then from 6 to more any word chars.
+                        }
+                      </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline flex-fill mb-0"
+                    >
+                      @let ageControl = registerForm.get('age');
+                      <label class="form-label" for="age">Your age</label>
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            ageControl?.errors && ageControl?.touched,
+                          'is-valid': !ageControl?.errors
+                        }"
+                        type="number"
+                        formControlName="age"
+                        id="age"
+                        class="form-control"
+                      />
+                      @if (ageControl?.errors && ageControl?.touched) {
+                      <div class="alert alert-danger" role="alert">
+                        @if (ageControl?.getError('required')) { age is required
+                        }@else if (ageControl?.getError('pattern')) { Invalid
+                        age! Please enter a number between 10 and 80. }
+                      </div>
+                      }
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div
+                      data-mdb-input-init
+                      class="form-outline flex-fill mb-0"
+                    >
+                      @let phoneControl = registerForm.get('phone');
+                      <label class="form-label" for="Phone">Your Phone</label>
+                      <input
+                        [ngClass]="{
+                          'is-invalid':
+                            phoneControl?.errors && phoneControl?.touched,
+                          'is-valid': !phoneControl?.errors
+                        }"
+                        type="tel"
+                        formControlName="phone"
+                        id="Phone"
+                        class="form-control"
+                      />
+                      @if (phoneControl?.errors && phoneControl?.touched) {
+                      <div class="alert alert-danger" role="alert">
+                        @if (phoneControl?.getError('required')) { phone is
+                        required }@else if (phoneControl?.getError('pattern')) {
+                        phone must be only egypt phone numbers }
+                      </div>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="form-check d-flex mb-3">
+                    <input
+                      class="form-check-input me-2"
+                      type="checkbox"
+                      value=""
+                      id="form2Example3c"
+                    />
+                    <label class="form-check-label" for="form2Example3">
+                      I agree all statements in
+                      <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+
+                  <div class="mb-3 mb-lg-4">
+                    <button
+                      [disabled]="registerForm.invalid"
+                      type="submit"
+                      data-mdb-button-init
+                      data-mdb-ripple-init
+                      class="btn btn-primary"
+                    >
+                      Register
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div
+                class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+              >
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid"
+                  alt="Sample image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
