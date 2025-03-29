@@ -73,15 +73,13 @@
     <div class="row g-4">
       @for (note of userNotes; track $index) {
       <div class="col-md-3">
-        <div class="card bg-white shadow-lg h-100">
+        <div class="card bg-white shadow-lg h-100 position-relative">
           <div class="card-body">
             <h5 class="card-title fw-semibold">Title :</h5>
             <p>{{ note.title }}</p>
             <h5 class="card-text fw-semibold">Content :</h5>
             <p>{{ note.content }}</p>
-            <p class="card-text text-muted">
-              {{ note.createdAt | date }}
-            </p>
+            <p class="card-text text-muted">📅 {{ note.createdAt | date }}</p>
             <div class="d-flex">
               <button
                 (click)="patchvalue(note)"
