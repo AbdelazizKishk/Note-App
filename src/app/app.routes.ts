@@ -13,14 +13,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
     canActivate: [authGuard],
-    title: 'Home',
+    title: 'Home • Notely',
   },
   {
     path: 'login',
     loadComponent: () =>
       import('./pages/login/login.component').then((m) => m.LoginComponent),
     canActivate: [notauthGuard],
-    title: 'Login',
+    title: 'Login • Notely',
   },
   {
     path: 'register',
@@ -29,7 +29,7 @@ export const routes: Routes = [
         (m) => m.RegisterComponent
       ),
     canActivate: [notauthGuard],
-    title: 'SignUp',
+    title: 'SignUp • Notely',
   },
   {
     path: '**',

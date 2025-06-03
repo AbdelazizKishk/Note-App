@@ -1,0 +1,17 @@
+.notFound {
+  background: linear-gradient(to right, #0d955e, #0da166c9);
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+.fade-in.delay-1s {
+  animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
